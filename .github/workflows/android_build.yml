@@ -12,10 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 11
+    - name: set up JDK 17 Fixed
       uses: actions/setup-java@v4
       with:
-        java-version: '11'
+        # 强制指定 17.0.12，这个版本既支持 AGP 8+ 又没有那个编译器 Bug
+        java-version: '17.0.12' 
         distribution: 'temurin'
         cache: gradle
 
