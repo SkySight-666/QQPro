@@ -12,12 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 17 Fixed
-      uses: actions/setup-java@v4
-      with:
-        # 强制指定 17.0.11，这个版本既支持 AGP 8+ 又没有那个编译器 Bug
-        java-version: '17.0.11' 
-        distribution: 'temurin'
+    - name: set up JDK 17 (Ancient Version)
+      uses: actions/setup-java@v4        # 👈 这一行只写工具名
+      with:                              # 👈 参数要写在 with 下面
+        java-version: '17.0.2'           # 👈 这里指定具体的旧版本
+        distribution: 'zulu'             # 👈 推荐用 zulu，兼容性更好
         cache: gradle
 
     - name: Grant execute permission for gradlew
