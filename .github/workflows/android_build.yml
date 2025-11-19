@@ -21,6 +21,19 @@ jobs:
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+      # 👇 加上这段“清理门户”的代码
+    - name: Remove conflicting stub files
+      run: |
+        echo "Removing decompiler junk..."
+        # 删除 android.view 下带 $ 的奇怪文件
+        find app/src/main/java/android/view -name "*\$*.java" -type f -delete
+        # 删除 androidx 下带 $ 的奇怪文件
+        find app/src/main/java/androidx -name "*\$*.java" -type f -delete
+        echo "Done cleaning."
+
+    - name: Build with Gradle
+      # 加上 --no-daemon 省内存，加上 -x lint 跳过代码检查（Hook项目检查太多会烦死）
+      run: ./gradlew MixinApk-release --no-daemon -x lint
     - name: Build with Gradle
       run: ./gradlew MixinApk-release
 
