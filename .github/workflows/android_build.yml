@@ -12,11 +12,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: set up JDK 17 (Ancient Version)
-      uses: actions/setup-java@v4        # 👈 这一行只写工具名
-      with:                              # 👈 参数要写在 with 下面
-        java-version: '17.0.2'           # 👈 这里指定具体的旧版本
-        distribution: 'zulu'             # 👈 推荐用 zulu，兼容性更好
+    - name: set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'      # 直接用最新版 17
+        distribution: 'temurin' # 换回常用的 temurin
         cache: gradle
 
     - name: Grant execute permission for gradlew
