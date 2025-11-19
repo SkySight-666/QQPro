@@ -45,6 +45,8 @@ dependencies {
     compileOnly(libs.androidx.recyclerview)
     compileOnly(libs.androidx.viewpager2)
     compileOnly(libs.androidx.core)
+    compileOnly("org.projectlombok:lombok:1.18.34")
+    annotationProcessor("org.projectlombok:lombok:1.18.34")
 }
 
 apkMixin {
